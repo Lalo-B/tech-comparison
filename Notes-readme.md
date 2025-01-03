@@ -92,3 +92,11 @@ script which rund nodemon ./bin/www then it runs the app and
 checks for a db connection by doing a basic select as from the
 db.
 
+we added a restore csrf route. then we created the api folder and connected it to our routes/index.js file
+the main purpose of this express app is to be a REST API server.
+representational state transfer application programming interface.
+an api is a set of rules and protocols that allow different software apps
+to communicate with one another, allowing for the exchange of data
+and perform actions by following a set of standards. kinda like a middlegrounds
+for apps to interact with one another without needing to know the deets
+of the other system. a restful api is the get post delete put stuff?
