@@ -51,3 +51,44 @@ then we npx dotenv sequelize db:migrate to finish the set up
 this is the set up for sequelize done. now we set up express
 
 make an app.js in the backend folder so we can initialize the express app
+after initializing the app we then set up the middleware for it, using morgan, cookieparser, and express.json
+then we also set up the helmet.crossOriginResourcePolicy middle ware and the
+csurf middleware for site security.
+
+* study up on site security in the future *
+
+I like this paragraph explaining the use of the middleware:
+The `csurf` middleware will add a `_csrf` cookie that is HTTP-only (can't be
+read by JavaScript) to any server response. It also adds a method on all
+requests (`req.csrfToken`) that will be set to another cookie (`XSRF-TOKEN`)
+later on. These two cookies work together to provide CSRF (Cross-Site Request
+Forgery) protection for your application. The `XSRF-TOKEN` cookie value needs to
+be sent in the header of any request with all HTTP verbs besides `GET`. This
+header will be used to validate the `_csrf` cookie to confirm that the
+request comes from your site and not an unauthorized site.
+
+now routes. set up an express router and a test route. then export the route and
+connect it to the app by app.use(routes) then export the app at the bottom.
+
+next we set up the www file in the bin folder. this is used to make an executable
+that we can use to start the app by typing in the file name in the terminal as
+a command
+
+this is what starts the express app to listen for server requests only after
+authenticating the db connection.
+now the db, express app, and server are all set up.
+we added some scripts to the package.json file:
+"sequelize": "sequelize",
+    "sequelize-cli": "sequelize-cli",
+    "start": "per-env",
+    "start:development": "nodemon ./bin/www",
+    "start:production": "node ./bin/www",
+    "build": "node psql-setup-script.js"
+npm start does per-env which will run the /bin/www in nodemon
+when started in the dev environment with the env vars in .env
+loaded or in node when started in production. now we start.
+so when we start it runs the start script then the start dev
+script which rund nodemon ./bin/www then it runs the app and
+checks for a db connection by doing a basic select as from the
+db.
+
