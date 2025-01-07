@@ -106,4 +106,52 @@ were just testing the route atm and showing the request body
 next we're setting up error handling. quick notes on express error handling
 from what i remember express errors routes take 4 parameters or 3 - req, res,
 cb, error or just error. needs error, req, res, and next. once an error is
-sent they 
+sent they
+
+we added 3 error handlers, 404, sql, and an error formatter
+
+now were working on authentication
+first we installed bcryptjs in backend to hash passwords
+
+then we set up the migration using sequelize db:migrate
+full command we used:
+
+npx sequelize model:generate --name User --attributes username:string,email:string,hashedPassword:string
+
+to checkout the users table schema: sqlite3 db/dev.db ".schema Users"
+sidenote the tables need the schema prefix in prod not in dev
+next we add sequelize level constraints in the model file.
+
+sequelize has model wide validations which you put in after the .init
+as sequelize, then validate: {...} using this we can check if two things are set
+and error if one is but not the other.
+
+then we seed some data and add default user scope to exclude sensitive info
+
+The backend login flow in this project will be based on the following plan:
+
+1. The API login route will be hit with a request body holding a valid
+   credential (either username or email) and password combination.
+2. The API login handler will look for a `User` with the input credential in
+   either the `username` or `email` columns.
+3. Then the `hashedPassword` for that found `User` will be compared with the
+   input `password` for a match.
+4. If there is a match, the API login route should send back a JWT in an
+   HTTP-only cookie and a response body. The JWT and the body will hold the
+   user's `id`, `username`, and `email`.
+
+The backend sign-up flow in this project will be based on the following plan:
+
+1. The API signup route will be hit with a request body holding a `username`,
+   `email`, and `password`.
+2. The API signup handler will create a `User` with the `username`, an `email`,
+   and a `hashedPassword` created from the input `password`.
+3. If the creation is successful, the API signup route should send back a JWT in
+   an HTTP-only cookie and a response body. The JWT and the body will hold the
+   user's `id`, `username`, and `email`.
+
+The backend logout flow will be based on the following plan:
+
+1. The API logout route will be hit with a request.
+2. The API logout handler will remove the JWT cookie set by the login or signup
+   API routes and return a JSON success message.
