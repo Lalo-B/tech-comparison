@@ -98,7 +98,7 @@ the default constraints for the `createdAt` and `updatedAt` columns.
 
 You should
 also define the schema name for the Postgres production database in the options object at the top of the file, and include
-the options object in both the up and down functions.  All `queryInterface` method calls except `createTable` will require 
+the options object in both the up and down functions.  All `queryInterface` method calls except `createTable` will require
 the options object as the first argument, with the appropriate `tableName` property.
 
 If completed correctly, your migration file should look something like this:
@@ -474,7 +474,7 @@ The backend logout flow will be based on the following plan:
 
 Now is a good time to commit and push your code to GitHub!
 
-Here's a recommendation for what to write as your commit message:
+Here's a recommendation for what to write as your com mit message:
 "Add User model scope for user security"
 
 ## User Auth Middlewares

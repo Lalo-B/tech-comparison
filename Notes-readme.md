@@ -155,3 +155,12 @@ The backend logout flow will be based on the following plan:
 1. The API logout route will be hit with a request.
 2. The API logout handler will remove the JWT cookie set by the login or signup
    API routes and return a JSON success message.
+
+user auth middlewares!
+
+we added a jwt cookie sending mwfunction that takes the user and uses the jwt package
+to create a new token and send the token with the propper settings for the cookie
+then we add the restore user middleware fucntion that uses the jwt cookie to restore
+the user by parsing the payload of the jwt. this will be connected to the api router
+so that each route handler will check if there is a user
+last auth middle ware is for requiring a session user.
