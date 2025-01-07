@@ -100,3 +100,10 @@ to communicate with one another, allowing for the exchange of data
 and perform actions by following a set of standards. kinda like a middlegrounds
 for apps to interact with one another without needing to know the deets
 of the other system. a restful api is the get post delete put stuff?
+
+were just testing the route atm and showing the request body
+
+next we're setting up error handling. quick notes on express error handling
+from what i remember express errors routes take 4 parameters or 3 - req, res,
+cb, error or just error. needs error, req, res, and next. once an error is
+sent they 
