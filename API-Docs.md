@@ -199,7 +199,25 @@ Returns the information about the current user that is logged in.
     ```
 ## social post
 ### Create post
+make a new post
+require auth true
+post data:
+  ```json
+  {
+    "post-text": "...",
+    "post-owner": "demo",
+    "post-likes": "2",
+    "created at": "kl",
+    "updated at": "fa",
+
+  }
+  ```
 ### edit post
+edit the data of the post
+if not your post return forbidden error
+if not logged in return authentication required
+find the post then grab its data and update it
+
 ### view/ read post
 ### delete post
 ## Comparisons
